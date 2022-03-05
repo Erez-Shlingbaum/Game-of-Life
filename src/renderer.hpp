@@ -1,7 +1,7 @@
 #pragma once
 
 #include "sdl_wrappings.hpp"
-#include "RGB.hpp"
+#include "color.hpp"
 
 class Renderer
 {

@@ -17,5 +17,5 @@ set_target_properties(SDL2_MAIN PROPERTIES IMPORTED_LOCATION ${SDL2_PATH}/lib/x8
 include_directories(include)
 include_directories(libraries/SDL2-2.0.20-vc/include)
 
-add_executable(game_of_life src/main.cpp src/cell.cpp src/game.cpp src/sdl_wrappings.cpp src/renderer.cpp src/renderer.hpp src/RGB.cpp src/RGB.hpp)
+add_executable(game_of_life src/main.cpp src/cell.cpp src/game.cpp src/sdl_wrappings.cpp src/renderer.cpp)
 target_link_libraries(game_of_life SDL2_MAIN SDL2)
