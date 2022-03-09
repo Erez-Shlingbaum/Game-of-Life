@@ -4,6 +4,7 @@
 #include <stdexcept>
 #include <functional>
 #include <SDL.h>
+#include "screen_dimensions.hpp"
 
 namespace SDL
 {
@@ -29,6 +30,8 @@ namespace SDL
             throw SDLException();
         }
     }
+
+    ScreenDimensions get_current_display_mode();
 
     template<typename T, auto create_function, auto destroy_function>
     class ManagedSDLResource

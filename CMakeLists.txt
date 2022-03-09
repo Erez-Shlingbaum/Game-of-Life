@@ -14,5 +14,5 @@ add_subdirectory(SDL)
 # Game of life
 include_directories(include)
 
-add_executable(game_of_life src/main.cpp src/cell.cpp src/game.cpp src/sdl_wrappings.cpp src/renderer.cpp)
+add_executable(game_of_life src/main.cpp src/cell.cpp src/game.cpp src/sdl_wrappings.cpp src/renderer.cpp src/window.cpp)
 target_link_libraries(game_of_life SDL2main SDL2-static)

@@ -7,11 +7,13 @@
 #include "cell.hpp"
 #include "sdl_wrappings.hpp"
 #include "renderer.hpp"
+#include "screen_dimensions.hpp"
+#include "window.hpp"
 
 class Game
 {
 public:
-    Game(std::string title, size_t screen_width, size_t screen_height, size_t cell_width, size_t cell_height);
+    Game(std::string title, size_t cell_width, size_t cell_height);
     ~Game() = default;
 
     void run();
@@ -35,9 +37,7 @@ private:
     [[nodiscard]] size_t cell_cols() const;
 
     std::string _title;
-    size_t _screen_width;
-    size_t _screen_height;
-
+    ScreenDimensions _screen_dimensions;
     size_t _cell_width;
     size_t _cell_height;
     size_t _cell_rows;
@@ -46,6 +46,6 @@ private:
     CountCellMatrix _neighbour_counts;
     CellStateMatrix _cells;
 
-    SDL::ManagedWindow _window;
-    Renderer _renderer;
+    SDL::Window _window;
+    SDL::Renderer _renderer;
 };

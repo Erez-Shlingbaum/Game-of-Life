@@ -8,7 +8,7 @@ int main(int argc, char **argv)
 {
     SDL::ApplicationGuard sdl_guard{};
 
-    Game game{"Game of Life", Consts::SCREEN_WIDTH, Consts::SCREEN_HEIGHT, Consts::CELL_WIDTH, Consts::CELL_HEIGHT};
+    Game game{"Game of Life", Consts::CELL_WIDTH, Consts::CELL_HEIGHT};
     game.run();
     return 0;
 }

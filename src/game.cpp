@@ -8,23 +8,22 @@
 #include "cell.hpp"
 #include "constants.hpp"
 
-Game::Game(std::string title, size_t screen_width, size_t screen_height, size_t cell_width, size_t cell_height) :
+Game::Game(std::string title, size_t cell_width, size_t cell_height) :
         _title(std::move(title)),
-        _screen_width(screen_width),
-        _screen_height(screen_height),
+        _screen_dimensions(SDL::get_current_display_mode()),
         _cell_width(cell_width),
         _cell_height(cell_height),
         _cell_rows(cell_rows()),
         _cell_cols(cell_cols()),
         _neighbour_counts(_cell_rows, std::vector<CountCell>(_cell_cols, {CellState::DEAD, 0})),
         _cells(_cell_cols, std::vector<CellState>(_cell_cols, CellState::DEAD)),
-        _window(_title.c_str(),
-                SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
-                static_cast<int>(_screen_width), static_cast<int>(_screen_height),
-                SDL_WINDOW_FULLSCREEN),
-        _renderer(_window, -1, SDL_RENDERER_ACCELERATED)
+        _window(_title.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
+                _screen_dimensions.screen_width, _screen_dimensions.screen_height,
+                SDL_WINDOW_FULLSCREEN
+        ),
+        _renderer(_window.window(), -1, SDL_RENDERER_ACCELERATED)
 {
-    SDL_SetWindowBordered(_window, SDL_FALSE);
+    _window.set_window_bordered(false);
     init_cells();
 }
 
@@ -100,12 +99,12 @@ bool Game::handle_events(SDL_Event &event) const
     return true;
 }
 
+
 void Game::update()
 {
     update_neighbour_counts();
     update_cells();
 }
-
 
 void Game::draw()
 {
@@ -190,10 +189,10 @@ void Game::cell_draw_matrix()
 
 size_t Game::cell_rows() const
 {
-    return _screen_height / _cell_height;
+    return _screen_dimensions.screen_height / _cell_height;
 }
 
 size_t Game::cell_cols() const
 {
-    return _screen_width / _cell_width;
+    return _screen_dimensions.screen_width / _cell_width;
 }

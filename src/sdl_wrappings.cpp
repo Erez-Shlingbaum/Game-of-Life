@@ -17,5 +17,16 @@ namespace SDL
     {
         SDL_Quit();
     }
+
+    ScreenDimensions get_current_display_mode()
+    {
+        SDL_DisplayMode display_mode{};
+        if (SDL_GetCurrentDisplayMode(0, &display_mode) != 0)
+        {
+            throw SDLException();
+        }
+
+        return {static_cast<size_t>(display_mode.w), static_cast<size_t>(display_mode.h)};
+    }
 }
 
