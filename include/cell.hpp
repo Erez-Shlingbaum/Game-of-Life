@@ -3,14 +3,8 @@
 #include <SDL.h>
 #include <vector>
 
-// TODO: get this at runtime
-#define SCREEN_WIDTH 1920
-#define SCREEN_HEIGHT 1080
 
-constexpr auto CELL_WIDTH = 5;
-constexpr auto CELL_HEIGHT = 5;
-
-enum class CellState
+enum class CellState : uint8_t
 {
     DEAD, ALIVE
 };

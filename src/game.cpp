@@ -1,12 +1,12 @@
 #include <cstdint>
 #include <utility>
-#include <SDL.h>
-#include <array>
 #include <iostream>
+
+#include <SDL.h>
+
 #include "game.hpp"
 #include "cell.hpp"
 #include "constants.hpp"
-#include "sdl_wrappings.hpp"
 
 Game::Game(std::string title, size_t screen_width, size_t screen_height, size_t cell_width, size_t cell_height) :
         _title(std::move(title)),
@@ -30,7 +30,7 @@ Game::Game(std::string title, size_t screen_width, size_t screen_height, size_t 
 
 void Game::run()
 {
-    SDL_Event event = {0};
+    SDL_Event event{};
 
     while (handle_events(event))
     {
@@ -170,15 +170,15 @@ void Game::update_cells()
 
 void Game::cell_draw_matrix()
 {
-    SDL_Rect rect{0, 0, CELL_WIDTH, CELL_HEIGHT};
+    SDL_Rect rect{0, 0, Consts::CELL_WIDTH, Consts::CELL_HEIGHT};
 
     _renderer.set_draw_color(Color::BLUE, 0);
     for (int row = 0; row < _cell_rows; ++row)
     {
         for (int col = 0; col < _cell_cols; ++col)
         {
-            rect.x = col * CELL_WIDTH;
-            rect.y = row * CELL_HEIGHT;
+            rect.x = col * Consts::CELL_WIDTH;
+            rect.y = row * Consts::CELL_HEIGHT;
 
             if (_cells[row][col] == CellState::ALIVE)
             {

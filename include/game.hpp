@@ -6,7 +6,7 @@
 #include <vector>
 #include "cell.hpp"
 #include "sdl_wrappings.hpp"
-#include "../src/renderer.hpp"
+#include "renderer.hpp"
 
 class Game
 {

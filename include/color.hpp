@@ -14,5 +14,4 @@ namespace Color
     constexpr RGB RED{255, 0, 0};
     constexpr RGB GREEN{0, 255, 0};
     constexpr RGB BLUE{0, 0, 255};
-
 }
