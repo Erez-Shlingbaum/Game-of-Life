@@ -1,7 +1,7 @@
-cmake_minimum_required(VERSION 3.17)
+cmake_minimum_required(VERSION 3.16)
 project(game_of_life)
 
-set(CMAKE_CXX_STANDARD 23)
+set(CMAKE_CXX_STANDARD 20)
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 set(SDL2_PATH "${CMAKE_SOURCE_DIR}/libraries/SDL2-2.0.20-vc")
