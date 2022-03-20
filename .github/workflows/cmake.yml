@@ -52,4 +52,4 @@ jobs:
       with:
         # Artifact name
         name : game_of_life
-        path: ./build/game_of_life.exe
+        path: ./build/Release/game_of_life.exe
