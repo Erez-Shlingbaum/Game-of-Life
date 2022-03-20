@@ -4,11 +4,13 @@
 #include <random>
 #include <string>
 #include <vector>
+
 #include "cell.hpp"
 #include "sdl_wrappings.hpp"
 #include "renderer.hpp"
 #include "screen_dimensions.hpp"
 #include "window.hpp"
+#include "pair_hasher.hpp"
 
 class Game
 {
@@ -19,9 +21,11 @@ public:
     void run();
 
 private:
-    void init_cells();
+    static constexpr uint8_t MIN_BLUE_STRENGTH = 64;
 
-    [[nodiscard]] inline bool is_valid_position(size_t row, size_t col) const;
+    using CellTimeAliveTrackerMap = std::unordered_map<std::pair<size_t, size_t>, uint8_t, PairHasher>;
+    static CellTimeAliveTrackerMap create_initialized_map(size_t rows, size_t cols);
+    void init_cells();
     [[nodiscard]] size_t cell_count_neighbours(size_t row, size_t col);
 
     bool handle_events(SDL_Event &event) const;
@@ -33,6 +37,7 @@ private:
 
     void cell_draw_matrix();
 
+    static void increment_in_range(uint8_t &byte, uint8_t amount, uint8_t min_allowed_value);
     [[nodiscard]] size_t cell_rows() const;
     [[nodiscard]] size_t cell_cols() const;
 
@@ -45,6 +50,7 @@ private:
 
     CountCellMatrix _neighbour_counts;
     CellStateMatrix _cells;
+    CellTimeAliveTrackerMap _cell_time_alive_tracker_map;
 
     SDL::Window _window;
     SDL::Renderer _renderer;
