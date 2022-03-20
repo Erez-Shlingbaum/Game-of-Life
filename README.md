@@ -1,5 +1,8 @@
 # Game-of-Life
 
+## Link to latest windows and ubuntu artifacts
+https://nightly.link/Erez-Shlingbaum/Game-of-Life/workflows/cmake/master/game_of_life.zip
+
 ## How to build
 First, clone the repo along with its submodules (Currently, SDL)
 ```bash
